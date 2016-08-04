@@ -20,6 +20,16 @@ def tick_inc(t):
 	global ugfx
 	ugfx.poll()
 
+pin_options = [
+	{"title": "Onboard NeoPixel", "value":"PB13"},
+	{"title": "Servo Header 2", "value":"X2"},
+]
+
+led_pin_name = database_get("led-port", "PB13")
+pinnm = dialogs.prompt_option(pin_options, text="What connector are your neopixels on?", title="Wearables Controller")
+if pinnm:
+	database_set("led-port", pinnm['value'])
+
 menu_items = [
 	{"title": "Rainbow", "value":"rainbow"},
 	{"title": "Matrix", "value":"matrix"},
