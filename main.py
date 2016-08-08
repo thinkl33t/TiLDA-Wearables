@@ -33,7 +33,8 @@ if pinnm:
 menu_items = [
 	{"title": "Rainbow", "value":"rainbow"},
 	{"title": "Matrix", "value":"matrix"},
-	{"title": "Colour", "value":"colour"}
+	{"title": "Colour", "value":"colour"},
+        {"title": "Off", "value":"off"}
 ]
 
 led_seq_name = database_get("led-seq-name", "rainbow")
@@ -92,3 +93,7 @@ if option:
 		colour = "#%02X%02X%02X" % (r, g, b)
 
 		database_set("led-colour", colour)
+	elif option['value'] == "off":
+		database_set("led-period", 1000)
+		ugfx.clear(ugfx.html_color(0x7c1143))
+		database_set("led-colour", "#000000")
