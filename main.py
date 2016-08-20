@@ -5,6 +5,7 @@
 ### Appname : Wearables
 ### Built-in: no
 
+import pyb
 import ugfx
 from database import *
 import dialogs
