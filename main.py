@@ -16,10 +16,6 @@ buttons.disable_menu_reset()
 ugfx.init()
 ugfx.clear(ugfx.html_color(0x7c1143))
 
-def tick_inc(t):
-	global ugfx
-	ugfx.poll()
-
 pin_options = [
 	{"title": "Onboard NeoPixel", "value":"PB13"},
 	{"title": "Servo Header 2", "value":"X2"},
@@ -44,10 +40,6 @@ option = dialogs.prompt_option(menu_items, text="What sequence do you want?", ti
 if option:
 	database_set("led-seq-name", option['value'])
 
-	timer = pyb.Timer(3)
-	timer.init(freq=60)
-	timer.callback(tick_inc)
-
 	led_count = database_get("led-count", "1")
 	count = None
 
@@ -62,7 +54,6 @@ if option:
 	database_set("led-count", count)
 
 	if option['value'] == "rainbow":
-		timer.deinit()
 		rainbow_speeds = [
 			{"title": "Normal", "value":100},
 			{"title": "Fast", "value":20},
