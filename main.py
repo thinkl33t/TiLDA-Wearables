@@ -46,8 +46,8 @@ if option:
 	ugfx.clear(ugfx.html_color(0x7c1143))
 
 	while True:
-		count = dialogs.prompt_text("How many LEDs? (Numeric)", default=str(led_count), false_text=str(led_count))
-		if count.isdigit():
+		count = dialogs.prompt_text("How many LEDs? (Numeric)", init_text=str(led_count), false_text=str(led_count))
+		if count and count.isdigit():
 			count = int(count)
 			break
 
@@ -75,7 +75,7 @@ if option:
 
 		ugfx.clear(ugfx.html_color(0x7c1143))
 
-		colourstring = dialogs.prompt_text("What Colour (HTML Colour Code)", default=led_colour, false_text=led_colour)
+		colourstring = dialogs.prompt_text("What Colour (HTML Colour Code)", init_text=led_colour, false_text=led_colour)
 		colourstring = colourstring.strip()
 		if colourstring[0] == '#':
 			colourstring = colourstring[1:]
